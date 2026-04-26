@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Prepayment Calculator – How Much Can You Save? | EasyEMI.in</title>
+  <meta name="description" content="Calculate exact savings from loan prepayment. See how much interest you save and how many months you cut by paying extra EMI on home, car or personal loans in India."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/prepayment.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>
+    (function(){
+      var s=localStorage.getItem("theme")||"dark";
+      document.documentElement.setAttribute("data-theme",s);
+    })();
+  </script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html" class="active">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>💰 Prepayment Savings Calculator</h1>
+    <p>Find out exactly how much you save in interest — and how many months you cut — by paying extra on your loan.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <h3 style="margin-bottom:1.25rem;font-size:1rem">Your Existing Loan</h3>
+          <div class="field">
+            <div class="field-header"><label>Original Loan Amount</label></div>
+            <input type="number" id="pp_principal" value="3000000" oninput="ppCalc()"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (% p.a.)</label></div>
+            <input type="number" id="pp_rate" value="8.5" step="0.1" oninput="ppCalc()"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Original Tenure (Months)</label></div>
+            <input type="number" id="pp_tenure" value="240" oninput="ppCalc()"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Months Already Paid</label></div>
+            <input type="number" id="pp_paid" value="0" oninput="ppCalc()"/>
+          </div>
+
+          <h3 style="margin:1.25rem 0 1rem;font-size:1rem;padding-top:1rem;border-top:1px solid var(--border)">Extra Payment</h3>
+          <div class="field">
+            <div class="field-header"><label>Extra Amount per Month</label></div>
+            <input type="number" id="pp_extra" value="5000" oninput="ppCalc()"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Payment Frequency</label></div>
+            <div style="display:flex;gap:.5rem;margin-top:.5rem">
+              <button class="tab active" id="ppf_monthly" onclick="setPPFreq('monthly',this)">Monthly</button>
+              <button class="tab" id="ppf_yearly" onclick="setPPFreq('yearly',this)">Yearly (Lump sum)</button>
+              <button class="tab" id="ppf_once" onclick="setPPFreq('once',this)">One-time</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-right">
+        <div id="pp-result-area">
+          <div class="pp-result" id="pp-result" style="display:none">
+            <div style="font-size:.8rem;color:var(--green);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.5rem">Total Interest Saved</div>
+            <div class="pp-big" id="pp_saved">₹0</div>
+            <div class="pp-sub" id="pp_months_saved"></div>
+            <div class="pp-grid">
+              <div class="res-box">
+                <div class="rb-label">Without Prepayment</div>
+                <div class="rb-val red" id="pp_orig_int">₹0</div>
+                <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem" id="pp_orig_months"></div>
+              </div>
+              <div class="res-box">
+                <div class="rb-label">With Prepayment</div>
+                <div class="rb-val" style="color:var(--green)" id="pp_new_int">₹0</div>
+                <div style="font-size:.72rem;color:var(--text2);margin-top:.2rem" id="pp_new_months"></div>
+              </div>
+              <div class="res-box">
+                <div class="rb-label">New Monthly EMI</div>
+                <div class="rb-val" id="pp_new_emi">₹0</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="card" style="margin-top:1.25rem">
+            <h3 style="font-size:.95rem;margin-bottom:1rem">💡 Prepayment Scenarios</h3>
+            <div id="scenarios"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="ad-slot" style="margin:2rem 0">Advertisement</div>
+
+    <!-- Amort comparison table -->
+    <h2 class="sh">Year-wise Comparison</h2>
+    <div class="card table-card">
+      <div class="table-scroll">
+        <table>
+          <thead>
+            <tr>
+              <th>Year</th>
+              <th>Balance (Normal)</th>
+              <th>Balance (With Extra)</th>
+              <th>Interest Saved</th>
+            </tr>
+          </thead>
+          <tbody id="pp-amort-body">
+            <tr><td colspan="4" class="empty-msg">Enter values above to see comparison</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD: Half Page above FAQs (YOUR REQUEST) -->
+<div class="container"><div class="ad-slot ad-half" data-label="Ad">Advertisement · 300×600 Half Page</div></div>
+
+<!-- FAQ -->
+<section class="section">
+  <div class="container">
+    <h2 class="sh">Prepayment FAQs</h2>
+    <div class="faq">
+      <details class="faq-item"><summary>When is the best time to prepay a loan?</summary><p>Early in the tenure — when most of your EMI is going toward interest. Prepaying in the first 30–40% of the tenure gives the maximum benefit since interest is front-loaded in reducing-balance loans.</p></details>
+      <details class="faq-item"><summary>Do banks charge a penalty for prepayment?</summary><p>For floating rate home loans, RBI mandates zero foreclosure charges. For fixed rate loans and personal loans, banks may charge 2–4% of the outstanding amount. Check your loan agreement.</p></details>
+      <details class="faq-item"><summary>Should I invest the extra money or prepay the loan?</summary><p>If your loan rate is above 10% (personal loan), prepaying is usually better. For home loans at 8–9%, if you can earn 12%+ returns (equity SIP), investing may be better. But prepayment is risk-free — investment returns are not guaranteed.</p></details>
+      <details class="faq-item"><summary>Is it better to reduce EMI or tenure when prepaying?</summary><p>Reducing tenure saves more total interest. Reducing EMI improves monthly cash flow. Most financial advisors recommend reducing tenure for maximum savings.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan tools for India.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById("themeToggle");
+  const d=h.getAttribute("data-theme")==="dark";
+  h.setAttribute("data-theme",d?"light":"dark");
+  if(b)b.textContent=d?"🌙 Dark":"☀️ Light";
+  localStorage.setItem("theme",d?"light":"dark");
+}
+(function(){
+  const s=localStorage.getItem("theme")||"dark";
+  document.documentElement.setAttribute("data-theme",s);
+  const b=document.getElementById("themeToggle");
+  if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";
+})();
+
+const fmt = n => '₹'+Math.round(n).toLocaleString('en-IN');
+const fmtMo = n => n >= 12 ? `${Math.floor(n/12)} yr ${n%12} mo` : `${n} mo`;
+let ppFreq = 'monthly';
+
+function setPPFreq(f, btn){
+  ppFreq = f;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  ppCalc();
+}
+
+function calcWithExtra(P, rate, N, extra, freq){
+  const r = rate/12/100;
+  const stdEMI = r ? (P*r*Math.pow(1+r,N))/(Math.pow(1+r,N)-1) : P/N;
+  let bal = P, totalInt = 0, months = 0;
+  for(let m=1; m<=N*2; m++){
+    if(bal <= 0) break;
+    const intComp = bal*r;
+    const prinComp = stdEMI - intComp;
+    bal -= prinComp;
+    totalInt += intComp;
+    months++;
+    // extra payment
+    let xtra = 0;
+    if(freq==='monthly') xtra = extra;
+    else if(freq==='yearly' && m%12===0) xtra = extra;
+    else if(freq==='once' && m===1) xtra = extra;
+    if(xtra > 0){ bal = Math.max(0, bal-xtra); }
+  }
+  return {totalInt, months, stdEMI};
+}
+
+function ppCalc(){
+  const P = parseFloat(document.getElementById('pp_principal').value)||0;
+  const rate = parseFloat(document.getElementById('pp_rate').value)||0;
+  const N = parseFloat(document.getElementById('pp_tenure').value)||0;
+  const paid = parseFloat(document.getElementById('pp_paid').value)||0;
+  const extra = parseFloat(document.getElementById('pp_extra').value)||0;
+  if(!P||!N||!rate) return;
+
+  const rem = N - paid;
+  const r = rate/12/100;
+  const stdEMI = r ? (P*r*Math.pow(1+r,N))/(Math.pow(1+r,N)-1) : P/N;
+  // current balance after `paid` months
+  let bal = P;
+  let intPaidSoFar = 0;
+  for(let m=0;m<paid;m++){ const ic=bal*r; bal=Math.max(0,bal-(stdEMI-ic)); intPaidSoFar+=ic; }
+
+  // normal
+  const normalInt = stdEMI*rem - bal;
+
+  // with extra
+  const {totalInt: newInt, months: newMonths} = calcWithExtra(bal, rate, rem, extra, ppFreq);
+
+  const saved = Math.max(0, normalInt - newInt);
+  const moSaved = rem - newMonths;
+
+  document.getElementById('pp-result').style.display='block';
+  document.getElementById('pp_saved').textContent = fmt(saved);
+  document.getElementById('pp_months_saved').textContent = `You cut ${fmtMo(moSaved)} off your loan tenure`;
+  document.getElementById('pp_orig_int').textContent = fmt(normalInt);
+  document.getElementById('pp_orig_months').textContent = fmtMo(rem) + ' remaining';
+  document.getElementById('pp_new_int').textContent = fmt(newInt);
+  document.getElementById('pp_new_months').textContent = fmtMo(newMonths) + ' remaining';
+  document.getElementById('pp_new_emi').textContent = fmt(stdEMI);
+
+  // Scenarios
+  const extras = [2000,5000,10000,20000,50000];
+  document.getElementById('scenarios').innerHTML = `
+    <table style="width:100%;font-size:.82rem;border-collapse:collapse">
+      <thead><tr>
+        <th style="text-align:left;padding:.5rem .75rem;color:var(--text2);border-bottom:1px solid var(--border)">Extra/Month</th>
+        <th style="text-align:right;padding:.5rem .75rem;color:var(--text2);border-bottom:1px solid var(--border)">Interest Saved</th>
+        <th style="text-align:right;padding:.5rem .75rem;color:var(--text2);border-bottom:1px solid var(--border)">Months Saved</th>
+      </tr></thead>
+      <tbody>${extras.map(ex=>{
+        const {totalInt:ni,months:nm}=calcWithExtra(bal,rate,rem,ex,'monthly');
+        const s=Math.max(0,normalInt-ni); const ms=rem-nm;
+        return `<tr style="${ex===extra?'background:rgba(99,102,241,.08)':''}">
+          <td style="padding:.5rem .75rem;border-bottom:1px solid var(--border);font-weight:${ex===extra?'700':'400'}">${fmt(ex)}</td>
+          <td style="padding:.5rem .75rem;border-bottom:1px solid var(--border);text-align:right;color:var(--green);font-family:var(--mono)">${fmt(s)}</td>
+          <td style="padding:.5rem .75rem;border-bottom:1px solid var(--border);text-align:right;color:var(--text2)">${fmtMo(ms)}</td>
+        </tr>`;
+      }).join('')}</tbody>
+    </table>`;
+
+  // Amort comparison table
+  let b1=bal, b2=bal, rows=[];
+  let cumIntSaved=0;
+  for(let y=1; y<=Math.ceil(rem/12); y++){
+    let int1=0, int2=0;
+    for(let m=0;m<12&&b1>0;m++){
+      const i1=b1*r; b1=Math.max(0,b1-(stdEMI-i1)); int1+=i1;
+      const i2=b2*r; const ep=ppFreq==='monthly'?extra:ppFreq==='yearly'&&m===11?extra:0;
+      b2=Math.max(0,b2-(stdEMI-i2)-ep); int2+=i2;
+    }
+    cumIntSaved += Math.max(0, int1-int2);
+    rows.push(`<tr>
+      <td>Year ${y}</td>
+      <td>${fmt(Math.max(0,b1))}</td>
+      <td>${fmt(Math.max(0,b2))}</td>
+      <td style="color:var(--green)">${fmt(cumIntSaved)}</td>
+    </tr>`);
+    if(b1<=0&&b2<=0) break;
+  }
+  document.getElementById('pp-amort-body').innerHTML = rows.join('');
+}
+
+document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav')?.classList.toggle('open'));
+document.addEventListener('DOMContentLoaded', ppCalc);
+</script>
+</body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Car Loan EMI Calculator India 2025 – SBI HDFC Kotak | EasyEMI.in</title>
+  <meta name="description" content="Calculate car loan EMI for SBI, HDFC, ICICI, Kotak and more. Compare rates from 8.99%. See total interest and on-road cost breakdown. Free, instant calculator."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/car-loan"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>(function(){var s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);})();</script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html" class="active">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>🚗 Car Loan EMI Calculator</h1>
+    <p>Calculate car loan EMI, compare bank rates from 8.99%, and see the total cost before you visit the showroom.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <div class="quick-rates" style="margin-bottom:1.5rem">
+            <div class="qr-label">Quick-fill bank rate:</div>
+            <div class="qr-chips">
+              <button class="chip" onclick="applyRate(8.99)" style="border-left:3px solid #059669">Kotak 8.99%</button>
+              <button class="chip" onclick="applyRate(9.00)" style="border-left:3px solid #dc2626">HDFC 9.00%</button>
+              <button class="chip" onclick="applyRate(9.10)" style="border-left:3px solid #d97706">ICICI 9.10%</button>
+              <button class="chip" onclick="applyRate(9.15)" style="border-left:3px solid #2563eb">SBI 9.15%</button>
+              <button class="chip" onclick="applyRate(9.15)" style="border-left:3px solid #db2777">BOB 9.15%</button>
+              <button class="chip" onclick="applyRate(9.20)" style="border-left:3px solid #7c3aed">Axis 9.20%</button>
+              <button class="chip" onclick="applyRate(9.30)" style="border-left:3px solid #65a30d">Canara 9.30%</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Loan Amount</label><div class="field-val">₹<span id="disp_amount">6,00,000</span></div></div>
+            <input type="range" id="sl_amount" min="50000" max="5000000" step="50000" value="600000" oninput="syncField('amount',this.value)"/>
+            <div class="range-ends"><span>₹50K</span><span>₹50L</span></div>
+            <input type="number" id="f_amount" value="600000" oninput="syncSlider('amount',this.value)" placeholder="Loan amount"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_rate">9.15</span>%</div></div>
+            <input type="range" id="sl_rate" min="7" max="20" step="0.05" value="9.15" oninput="syncField('rate',this.value)"/>
+            <div class="range-ends"><span>7%</span><span>20%</span></div>
+            <input type="number" id="f_rate" value="9.15" step="0.05" oninput="syncSlider('rate',this.value)" placeholder="Rate %"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Tenure (Years)</label><div class="field-val"><span id="disp_tenure">5</span> Yrs</div></div>
+            <input type="range" id="sl_tenure" min="1" max="8" step="1" value="5" oninput="syncField('tenure',this.value)"/>
+            <div class="range-ends"><span>1 Yr</span><span>8 Yrs</span></div>
+            <input type="number" id="f_tenure" value="5" data-unit="yr" oninput="syncSlider('tenure',this.value)" placeholder="Years"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Processing Fee (%)</label><div class="field-val"><span id="disp_fee">1</span>%</div></div>
+            <input type="range" id="sl_fee" min="0" max="3" step="0.1" value="1" oninput="syncField('fee',this.value)"/>
+            <div class="range-ends"><span>0%</span><span>3%</span></div>
+            <input type="number" id="f_fee" value="1" step="0.1" oninput="syncSlider('fee',this.value)" placeholder="Fee %"/>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="card result-card">
+          <div class="emi-hero"><div class="emi-label">Monthly EMI</div><div class="emi-val" id="res_emi">₹0</div></div>
+          <div class="donut-row">
+            <canvas id="donut" width="160" height="160"></canvas>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#6366f1"></span><span>Principal</span><strong id="leg_p">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f43f5e"></span><span>Interest</span><strong id="leg_i">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f59e0b"></span><span>Fee</span><strong id="leg_f">₹0</strong></div>
+            </div>
+          </div>
+          <div class="res-grid">
+            <div class="res-box"><div class="rb-label">Principal</div><div class="rb-val" id="res_p">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_int">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Processing Fee</div><div class="rb-val amber" id="res_fee">₹0</div></div>
+            <div class="res-box highlight"><div class="rb-label">Total Cost</div><div class="rb-val" id="res_total">₹0</div></div>
+          </div>
+          <div class="insight-box" id="insight"></div>
+          <div class="action-btns">
+            <button class="btn-sec" onclick="location.href='prepayment.html'">💰 Prepayment Saver</button>
+            <button class="btn-sec" onclick="location.href='bank-compare.html'">🏦 Compare Banks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AD: Large Rectangle above Amortization (YOUR REQUEST) -->
+    <div class="ad-slot ad-rect" data-label="Ad" style="margin-top:2rem;margin-bottom:0">Advertisement · 336×280 Large Rectangle</div>
+    <div style="margin-top:1.5rem">
+      <div class="section-header">
+        <h2>Amortization Schedule</h2>
+        <div class="view-toggle">
+          <button class="vtog active" onclick="setAmortView('yr',this)">Yearly</button>
+          <button class="vtog" onclick="setAmortView('mo',this)">Monthly</button>
+        </div>
+      </div>
+      <div class="card table-card">
+        <div class="table-scroll">
+          <table><thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th><th>% Paid</th></tr></thead>
+          <tbody id="amort-body"><tr><td colspan="6" class="empty-msg">Adjust sliders to see schedule</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <h2 class="sh">Car Loan Guide</h2>
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:1rem">Banks typically finance 80–90% of the on-road price. SBI offers 0% processing fee on car loans while HDFC and ICICI charge up to 1%. Kotak Mahindra Bank currently offers the lowest rates starting at 8.99% p.a. for salaried applicants.</p>
+    <div class="card table-card" style="margin-bottom:2rem">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Car Price</th><th>Loan (90%)</th><th>9% – 5 yrs</th><th>9% – 7 yrs</th></tr></thead>
+          <tbody>
+            <tr><td>₹5 Lakh</td><td>₹4.5L</td><td>₹9,337</td><td>₹7,228</td></tr>
+            <tr><td>₹8 Lakh</td><td>₹7.2L</td><td>₹14,939</td><td>₹11,565</td></tr>
+            <tr><td>₹12 Lakh</td><td>₹10.8L</td><td>₹22,409</td><td>₹17,347</td></tr>
+            <tr><td>₹20 Lakh</td><td>₹18L</td><td>₹37,348</td><td>₹28,912</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- AD: Banner below reference table (YOUR REQUEST) -->
+    <div class="ad-slot ad-banner" data-label="Ad" style="margin-bottom:1.5rem">Advertisement · Responsive Banner</div>
+    <div class="faq">
+      <details class="faq-item"><summary>How much down payment is needed for a car loan?</summary><p>Banks typically finance 80–90% of on-road price. You need 10–20% as down payment. A higher down payment reduces EMI and total interest significantly.</p></details>
+      <details class="faq-item"><summary>Is a car loan better from a bank or car dealership?</summary><p>Bank rates are usually 0.5–1% lower than dealer-arranged financing. Always get a bank quote first, then use it to negotiate with the dealer's finance arm.</p></details>
+      <details class="faq-item"><summary>Can I get a car loan for a used car?</summary><p>Yes. Most banks finance used cars up to 5 years old at rates 1–3% higher than new car loans. Loan amount is capped at 80% of the car's current market value.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a><a href="education-loan.html">Education Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="prepayment.html">Prepayment</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+<script src="calc-core.js"></script>
+</body>
+</html>

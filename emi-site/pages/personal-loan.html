@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Personal Loan EMI Calculator India 2025 – SBI HDFC ICICI Axis | EasyEMI.in</title>
+  <meta name="description" content="Calculate personal loan EMI for SBI, HDFC, ICICI, Axis, Bajaj Finance. Compare rates from 10.49%. See total interest and true cost instantly. Free calculator."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/personal-loan"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>(function(){var s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);})();</script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html" class="active">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>👤 Personal Loan EMI Calculator</h1>
+    <p>Compare personal loan rates from SBI, HDFC, ICICI, Axis and more. Find the cheapest option before you apply.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <div class="quick-rates" style="margin-bottom:1.5rem">
+            <div class="qr-label">Quick-fill bank rate:</div>
+            <div class="qr-chips">
+              <button class="chip" onclick="applyRate(10.49)" style="border-left:3px solid #7c3aed">Axis 10.49%</button>
+              <button class="chip" onclick="applyRate(10.49)" style="border-left:3px solid #db2777">IndusInd 10.49%</button>
+              <button class="chip" onclick="applyRate(10.50)" style="border-left:3px solid #dc2626">HDFC 10.50%</button>
+              <button class="chip" onclick="applyRate(10.75)" style="border-left:3px solid #d97706">ICICI 10.75%</button>
+              <button class="chip" onclick="applyRate(10.99)" style="border-left:3px solid #059669">Kotak 10.99%</button>
+              <button class="chip" onclick="applyRate(11.00)" style="border-left:3px solid #2563eb">SBI 11.00%</button>
+              <button class="chip" onclick="applyRate(13.00)" style="border-left:3px solid #0891b2">Bajaj 13.00%</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Loan Amount</label><div class="field-val">₹<span id="disp_amount">3,00,000</span></div></div>
+            <input type="range" id="sl_amount" min="10000" max="5000000" step="10000" value="300000" oninput="syncField('amount',this.value)"/>
+            <div class="range-ends"><span>₹10K</span><span>₹50L</span></div>
+            <input type="number" id="f_amount" value="300000" oninput="syncSlider('amount',this.value)" placeholder="Loan amount"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_rate">11</span>%</div></div>
+            <input type="range" id="sl_rate" min="8" max="36" step="0.1" value="11" oninput="syncField('rate',this.value)"/>
+            <div class="range-ends"><span>8%</span><span>36%</span></div>
+            <input type="number" id="f_rate" value="11" step="0.1" oninput="syncSlider('rate',this.value)" placeholder="Rate %"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Tenure (Years)</label><div class="field-val"><span id="disp_tenure">3</span> Yrs</div></div>
+            <input type="range" id="sl_tenure" min="1" max="7" step="1" value="3" oninput="syncField('tenure',this.value)"/>
+            <div class="range-ends"><span>1 Yr</span><span>7 Yrs</span></div>
+            <input type="number" id="f_tenure" value="3" data-unit="yr" oninput="syncSlider('tenure',this.value)" placeholder="Years"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Processing Fee (%)</label><div class="field-val"><span id="disp_fee">2</span>%</div></div>
+            <input type="range" id="sl_fee" min="0" max="5" step="0.1" value="2" oninput="syncField('fee',this.value)"/>
+            <div class="range-ends"><span>0%</span><span>5%</span></div>
+            <input type="number" id="f_fee" value="2" step="0.1" oninput="syncSlider('fee',this.value)" placeholder="Fee %"/>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="card result-card">
+          <div class="emi-hero"><div class="emi-label">Monthly EMI</div><div class="emi-val" id="res_emi">₹0</div></div>
+          <div class="donut-row">
+            <canvas id="donut" width="160" height="160"></canvas>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#6366f1"></span><span>Principal</span><strong id="leg_p">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f43f5e"></span><span>Interest</span><strong id="leg_i">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f59e0b"></span><span>Fee</span><strong id="leg_f">₹0</strong></div>
+            </div>
+          </div>
+          <div class="res-grid">
+            <div class="res-box"><div class="rb-label">Principal</div><div class="rb-val" id="res_p">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_int">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Processing Fee</div><div class="rb-val amber" id="res_fee">₹0</div></div>
+            <div class="res-box highlight"><div class="rb-label">Total Cost</div><div class="rb-val" id="res_total">₹0</div></div>
+          </div>
+          <div class="insight-box" id="insight"></div>
+          <div class="action-btns">
+            <button class="btn-sec" onclick="location.href='prepayment.html'">💰 Prepayment Saver</button>
+            <button class="btn-sec" onclick="location.href='bank-compare.html'">🏦 Compare Banks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- AD: Large Rectangle above Amortization (YOUR REQUEST) -->
+    <div class="ad-slot ad-rect" data-label="Ad" style="margin-top:2rem;margin-bottom:0">Advertisement · 336×280 Large Rectangle</div>
+    <div style="margin-top:1.5rem">
+      <div class="section-header">
+        <h2>Amortization Schedule</h2>
+        <div class="view-toggle">
+          <button class="vtog active" onclick="setAmortView('yr',this)">Yearly</button>
+          <button class="vtog" onclick="setAmortView('mo',this)">Monthly</button>
+        </div>
+      </div>
+      <div class="card table-card">
+        <div class="table-scroll">
+          <table><thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th><th>% Paid</th></tr></thead>
+          <tbody id="amort-body"><tr><td colspan="6" class="empty-msg">Adjust sliders to see schedule</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <h2 class="sh">Personal Loan Guide</h2>
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:1rem">Personal loans are unsecured — no collateral needed — which is why rates are higher than home or car loans. Current rates range from 10.49% (Axis, IndusInd for top credit profiles) to 36% (digital lenders, low CIBIL). Always check the processing fee: at 2–2.5%, it adds ₹6,000–7,500 to a ₹3 lakh loan.</p>
+    <div class="card table-card" style="margin-bottom:2rem">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Loan Amount</th><th>11% – 2 yrs</th><th>11% – 3 yrs</th><th>11% – 5 yrs</th></tr></thead>
+          <tbody>
+            <tr><td>₹1 Lakh</td><td>₹4,657</td><td>₹3,274</td><td>₹2,174</td></tr>
+            <tr><td>₹3 Lakh</td><td>₹13,972</td><td>₹9,821</td><td>₹6,523</td></tr>
+            <tr><td>₹5 Lakh</td><td>₹23,286</td><td>₹16,369</td><td>₹10,871</td></tr>
+            <tr><td>₹10 Lakh</td><td>₹46,573</td><td>₹32,738</td><td>₹21,742</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <!-- AD: Banner below reference table (YOUR REQUEST) -->
+    <div class="ad-slot ad-banner" data-label="Ad" style="margin-bottom:1.5rem">Advertisement · Responsive Banner</div>
+    <div class="faq">
+      <details class="faq-item"><summary>What is the minimum CIBIL score for a personal loan?</summary><p>Most banks require 700+. HDFC, ICICI, and Axis require 750+ for their lowest rates. A score below 650 will likely result in rejection or very high rates (18–24%).</p></details>
+      <details class="faq-item"><summary>Is it better to take a personal loan or use a credit card?</summary><p>For amounts above ₹50,000 and if you need more than 3 months to repay, a personal loan is almost always cheaper. Credit card interest is 36–42% p.a. vs 10.5–14% for personal loans.</p></details>
+      <details class="faq-item"><summary>Can I prepay a personal loan early?</summary><p>Yes, but most lenders charge a foreclosure penalty of 2–5% on outstanding amount after a lock-in period (usually 6–12 months). Check your loan agreement before prepaying.</p></details>
+      <details class="faq-item"><summary>What documents are needed for a personal loan?</summary><p>Typically: PAN card, Aadhaar, last 3 months salary slips, 6 months bank statement, and Form 16. Self-employed need ITR for 2 years and business proof.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a><a href="education-loan.html">Education Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="prepayment.html">Prepayment</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+<script src="calc-core.js"></script>
+</body>
+</html>

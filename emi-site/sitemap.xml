@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://YOUR-DOMAIN.vercel.app/</loc><priority>1.0</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/home-loan</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/personal-loan</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/car-loan</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/education-loan</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/bank-compare</loc><priority>0.9</priority><changefreq>weekly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/prepayment</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/pages/affordability</loc><priority>0.8</priority><changefreq>monthly</changefreq></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/privacy</loc><priority>0.3</priority></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/about</loc><priority>0.3</priority></url>
+  <url><loc>https://YOUR-DOMAIN.vercel.app/contact</loc><priority>0.3</priority></url>
+</urlset>

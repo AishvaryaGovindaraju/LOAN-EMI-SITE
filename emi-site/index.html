@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>EMI Calculator India – Free Loan Calculator for All Banks 2025</title>
+  <meta name="description" content="India's most complete free EMI calculator. Calculate EMI for Home, Car, Personal loans. Compare SBI, HDFC, ICICI rates. Check affordability, prepayment savings and hidden costs."/>
+  <meta name="keywords" content="EMI calculator India, home loan EMI calculator, SBI EMI calculator, HDFC EMI calculator, personal loan EMI, loan comparison, prepayment calculator"/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+  <!-- AdSense: uncomment after approval -->
+  <!-- <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-XXXXXXXX" crossorigin="anonymous"></script> -->
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"EMI Calculator India","description":"Free EMI calculator for all Indian banks","applicationCategory":"FinanceApplication","offers":{"@type":"Offer","price":"0"}}</script>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>(function(){var s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);})();</script>
+</head>
+<body>
+
+<header class="header" id="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html" class="active">EMI Calc</a>
+      <a href="pages/home-loan.html">Home Loan</a>
+      <a href="pages/personal-loan.html">Personal Loan</a>
+      <a href="pages/car-loan.html">Car Loan</a>
+      <a href="pages/bank-compare.html">Bank Rates</a>
+      <a href="pages/affordability.html">Affordability</a>
+      <a href="pages/prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right">
+      <button class="theme-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Toggle theme">🌙 Dark</button>
+      <button class="hamburger" id="hamburger">☰</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">🇮🇳 Built for India</div>
+    <h1>EMI Calculator India</h1>
+    <p class="hero-sub">Calculate EMI, compare all major banks, check hidden costs & plan prepayments — all free.</p>
+    <div class="hero-stats">
+      <div class="stat"><span class="stat-n">15+</span><span class="stat-l">Banks covered</span></div>
+      <div class="stat"><span class="stat-n">6</span><span class="stat-l">Loan types</span></div>
+      <div class="stat"><span class="stat-n">100%</span><span class="stat-l">Free forever</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- AD 1: Leaderboard – top, highest CPM -->
+<div class="container"><div class="ad-slot ad-leaderboard" data-label="Ad">Advertisement · 728×90 Leaderboard</div></div>
+
+<section class="section" id="calculator">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <div class="card-tabs">
+            <button class="tab active" onclick="setLoanType('home',this)">🏠 Home</button>
+            <button class="tab" onclick="setLoanType('personal',this)">👤 Personal</button>
+            <button class="tab" onclick="setLoanType('car',this)">🚗 Car</button>
+            <button class="tab" onclick="setLoanType('education',this)">🎓 Education</button>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Loan Amount</label><div class="field-val">₹<span id="disp_amount">5,00,000</span></div></div>
+            <input type="range" id="sl_amount" min="10000" max="10000000" step="10000" value="500000" oninput="syncField('amount',this.value)"/>
+            <div class="range-ends"><span>₹10K</span><span>₹1Cr</span></div>
+            <input type="number" id="f_amount" value="500000" oninput="syncSlider('amount',this.value)"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_rate">8.5</span>%</div></div>
+            <input type="range" id="sl_rate" min="1" max="30" step="0.1" value="8.5" oninput="syncField('rate',this.value)"/>
+            <div class="range-ends"><span>1%</span><span>30%</span></div>
+            <input type="number" id="f_rate" value="8.5" step="0.1" oninput="syncSlider('rate',this.value)"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Tenure</label><div class="field-val"><span id="disp_tenure">5</span> <span id="tenure_unit">Yrs</span></div></div>
+            <input type="range" id="sl_tenure" min="1" max="30" step="1" value="5" oninput="syncField('tenure',this.value)"/>
+            <div class="range-ends"><span>1 Yr</span><span>30 Yrs</span></div>
+            <div class="tenure-toggle">
+              <button class="ttog active" id="btn_yr" onclick="setTenureMode('yr')">Years</button>
+              <button class="ttog" id="btn_mo" onclick="setTenureMode('mo')">Months</button>
+            </div>
+            <input type="number" id="f_tenure" value="5" oninput="syncSlider('tenure',this.value)"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Processing Fee (%)</label><div class="field-val"><span id="disp_fee">1.0</span>%</div></div>
+            <input type="range" id="sl_fee" min="0" max="5" step="0.1" value="1" oninput="syncField('fee',this.value)"/>
+            <div class="range-ends"><span>0%</span><span>5%</span></div>
+            <input type="number" id="f_fee" value="1" step="0.1" oninput="syncSlider('fee',this.value)"/>
+          </div>
+          <div class="quick-rates">
+            <div class="qr-label">Quick-fill bank rate:</div>
+            <div class="qr-chips" id="qr-chips"></div>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="card result-card">
+          <div class="emi-hero">
+            <div class="emi-label">Monthly EMI</div>
+            <div class="emi-val" id="res_emi">₹0</div>
+          </div>
+          <div class="donut-row">
+            <canvas id="donut" width="160" height="160"></canvas>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#6366f1"></span><span>Principal</span><strong id="leg_p">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f43f5e"></span><span>Interest</span><strong id="leg_i">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f59e0b"></span><span>Fee</span><strong id="leg_f">₹0</strong></div>
+            </div>
+          </div>
+          <div class="res-grid">
+            <div class="res-box"><div class="rb-label">Principal</div><div class="rb-val" id="res_p">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_int">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Processing Fee</div><div class="rb-val amber" id="res_fee">₹0</div></div>
+            <div class="res-box highlight"><div class="rb-label">Total Cost</div><div class="rb-val" id="res_total">₹0</div></div>
+          </div>
+          <div class="insight-box" id="insight"></div>
+          <div class="action-btns">
+            <button class="btn-sec" onclick="window.location='pages/prepayment.html'">💰 Prepayment Savings</button>
+            <button class="btn-sec" onclick="window.location='pages/bank-compare.html'">🏦 Compare Banks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD 2: Large Rectangle – mid content, best CTR -->
+<div class="container"><div class="ad-slot ad-rect" data-label="Ad">Advertisement · 336×280 Large Rectangle</div></div>
+
+<section class="section" id="amortization">
+  <div class="container">
+    <div class="section-header">
+      <h2>Amortization Schedule</h2>
+      <div class="view-toggle">
+        <button class="vtog active" id="vt_yr" onclick="setAmortView('yr',this)">Yearly</button>
+        <button class="vtog" id="vt_mo" onclick="setAmortView('mo',this)">Monthly</button>
+      </div>
+    </div>
+    <div class="card table-card">
+      <div class="table-scroll">
+        <table id="amort-table">
+          <thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th><th>% Paid</th></tr></thead>
+          <tbody id="amort-body"><tr><td colspan="6" class="empty-msg">Adjust sliders above to see schedule</td></tr></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD 3: Banner – after amortization -->
+<div class="container"><div class="ad-slot ad-banner" data-label="Ad">Advertisement · Responsive Banner</div></div>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sh">Calculators by Loan Type</h2>
+    <div class="loan-cards">
+      <a href="pages/home-loan.html" class="loan-card"><div class="lc-icon">🏠</div><div class="lc-name">Home Loan</div><div class="lc-rate">SBI: 8.50% | HDFC: 8.70%</div></a>
+      <a href="pages/personal-loan.html" class="loan-card"><div class="lc-icon">👤</div><div class="lc-name">Personal Loan</div><div class="lc-rate">SBI: 11% | HDFC: 10.5%</div></a>
+      <a href="pages/car-loan.html" class="loan-card"><div class="lc-icon">🚗</div><div class="lc-name">Car Loan</div><div class="lc-rate">SBI: 9.15% | HDFC: 9%</div></a>
+      <a href="pages/education-loan.html" class="loan-card"><div class="lc-icon">🎓</div><div class="lc-name">Education Loan</div><div class="lc-rate">SBI: 8.15% | Axis: 13%</div></a>
+      <a href="pages/bank-compare.html" class="loan-card"><div class="lc-icon">🏦</div><div class="lc-name">Bank Comparison</div><div class="lc-rate">15 banks side-by-side</div></a>
+      <a href="pages/prepayment.html" class="loan-card"><div class="lc-icon">💰</div><div class="lc-name">Prepayment Saver</div><div class="lc-rate">See how much you save</div></a>
+    </div>
+  </div>
+</section>
+
+<!-- AD 4: Large Rectangle – below loan type cards (YOUR REQUEST) -->
+<div class="container"><div class="ad-slot ad-rect" data-label="Ad">Advertisement · 336×280 Large Rectangle</div></div>
+
+<section class="section feat-section">
+  <div class="container">
+    <h2 class="sh">Why EasyEMI.in?</h2>
+    <div class="feat-grid">
+      <div class="feat-card"><div class="feat-icon">🏦</div><h3>All Bank Rates</h3><p>SBI, HDFC, ICICI, Axis, Kotak and 10+ more. Quick-fill any bank's current rate instantly.</p></div>
+      <div class="feat-card"><div class="feat-icon">🔍</div><h3>Hidden Cost Revealer</h3><p>See processing fee, GST, insurance — the total true cost banks don't show upfront.</p></div>
+      <div class="feat-card"><div class="feat-icon">💸</div><h3>Prepayment Simulator</h3><p>Find out exactly how much interest you save by paying ₹5K or ₹50K extra per month.</p></div>
+      <div class="feat-card"><div class="feat-icon">📊</div><h3>Salary Affordability</h3><p>Enter your take-home pay → we show the max loan you can safely take (40% EMI rule).</p></div>
+      <div class="feat-card"><div class="feat-icon">⚖️</div><h3>Side-by-Side Compare</h3><p>Compare two loan offers and see the exact rupee difference in total cost.</p></div>
+      <div class="feat-card"><div class="feat-icon">📱</div><h3>Works on Mobile</h3><p>Fully responsive. Use it while sitting at the bank counter to verify their numbers.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- AD 5: Half Page – below Why EasyEMI (YOUR REQUEST) – premium slot -->
+<div class="container"><div class="ad-slot ad-half" data-label="Ad">Advertisement · 300×600 Half Page</div></div>
+
+<section class="section" id="faq">
+  <div class="container">
+    <h2 class="sh">Frequently Asked Questions</h2>
+    <div class="faq">
+      <details class="faq-item"><summary>What is the EMI formula?</summary><p>EMI = [P × R × (1+R)^N] / [(1+R)^N – 1] where P = Principal, R = Monthly interest rate (annual rate ÷ 12 ÷ 100), N = Tenure in months.</p></details>
+      <details class="faq-item"><summary>Which bank has the lowest home loan rate in India 2025?</summary><p>SBI offers home loans starting at 8.50% p.a. for salaried applicants with good CIBIL scores (750+). Use our <a href="pages/bank-compare.html">Bank Comparison</a> tool for current rates.</p></details>
+      <details class="faq-item"><summary>What is a safe EMI-to-salary ratio?</summary><p>Your total EMIs should not exceed 40–50% of monthly take-home salary. Most banks reject applications above this threshold.</p></details>
+      <details class="faq-item"><summary>Does prepayment really save money?</summary><p>Yes. Paying one extra EMI per year on a 20-year home loan can save 2–4 years of tenure and lakhs in interest. Use our <a href="pages/prepayment.html">Prepayment Calculator</a>.</p></details>
+      <details class="faq-item"><summary>What hidden charges should I check?</summary><p>Processing fee (0.5–2%), GST on processing fee (18%), prepayment penalty (2–4%), late payment charges (2%/month), CIBIL report fee.</p></details>
+      <details class="faq-item"><summary>Is this calculator accurate for SBI/HDFC/ICICI loans?</summary><p>Yes. All banks use the same standard reducing balance EMI formula. The only variable is the interest rate.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- AD 6: Banner – above footer -->
+<div class="container"><div class="ad-slot ad-banner" data-label="Ad">Advertisement · Responsive Banner</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">💰 EasyEMI<span>.in</span></div>
+      <p>India's most complete free loan calculator. Not affiliated with any bank.</p>
+    </div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="pages/home-loan.html">Home Loan EMI</a><a href="pages/personal-loan.html">Personal Loan EMI</a><a href="pages/car-loan.html">Car Loan EMI</a><a href="pages/education-loan.html">Education Loan EMI</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="pages/bank-compare.html">Bank Rate Comparison</a><a href="pages/prepayment.html">Prepayment Simulator</a><a href="pages/affordability.html">Loan Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Company</div><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · For informational use only · Not financial advice · <a href="privacy.html">Privacy</a></p></div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+// ===== THEME TOGGLE =====
+function toggleTheme() {
+  const html = document.documentElement;
+  const btn = document.getElementById('themeToggle');
+  const isDark = html.getAttribute('data-theme') === 'dark';
+  html.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  btn.textContent = isDark ? '🌙 Dark' : '☀️ Light';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+}
+// Restore saved theme
+(function(){
+  const saved = localStorage.getItem('theme') || 'dark';
+  document.documentElement.setAttribute('data-theme', saved);
+  const btn = document.getElementById('themeToggle');
+  if(btn) btn.textContent = saved === 'dark' ? '🌙 Dark' : '☀️ Light';
+})();
+</script>
+</body>
+</html>

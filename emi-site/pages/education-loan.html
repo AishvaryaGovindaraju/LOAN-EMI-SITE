@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Education Loan EMI Calculator India 2025 – SBI Vidya Lakshmi | EasyEMI.in</title>
+  <meta name="description" content="Calculate education loan EMI for SBI, PNB, Canara, HDFC Credila. Compare rates from 8.15%. Includes moratorium period calculator. Free, instant."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/education-loan"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>(function(){var s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);})();</script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>🎓 Education Loan EMI Calculator</h1>
+    <p>Calculate education loan EMI with moratorium period. Compare SBI, PNB, Canara Bank rates from 8.15% p.a.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <div class="quick-rates" style="margin-bottom:1.5rem">
+            <div class="qr-label">Quick-fill bank rate:</div>
+            <div class="qr-chips">
+              <button class="chip" onclick="applyRate(8.15)" style="border-left:3px solid #2563eb">SBI 8.15%</button>
+              <button class="chip" onclick="applyRate(8.50)" style="border-left:3px solid #65a30d">Canara 8.50%</button>
+              <button class="chip" onclick="applyRate(8.55)" style="border-left:3px solid #0891b2">PNB 8.55%</button>
+              <button class="chip" onclick="applyRate(9.50)" style="border-left:3px solid #dc2626">HDFC 9.50%</button>
+              <button class="chip" onclick="applyRate(11.00)" style="border-left:3px solid #d97706">ICICI 11.00%</button>
+              <button class="chip" onclick="applyRate(13.70)" style="border-left:3px solid #7c3aed">Axis 13.70%</button>
+            </div>
+          </div>
+
+          <!-- Moratorium notice -->
+          <div style="background:rgba(99,102,241,.08);border:1px solid rgba(99,102,241,.25);border-radius:8px;padding:.85rem 1rem;margin-bottom:1.25rem;font-size:.85rem;color:var(--text2)">
+            <strong style="color:var(--accent)">ℹ️ Moratorium Period:</strong> Education loans have a course duration + 6–12 months before repayment starts. Enter your repayment tenure below (after moratorium ends).
+          </div>
+
+          <div class="field">
+            <div class="field-header"><label>Loan Amount</label><div class="field-val">₹<span id="disp_amount">10,00,000</span></div></div>
+            <input type="range" id="sl_amount" min="50000" max="7500000" step="50000" value="1000000" oninput="syncField('amount',this.value)"/>
+            <div class="range-ends"><span>₹50K</span><span>₹75L</span></div>
+            <input type="number" id="f_amount" value="1000000" oninput="syncSlider('amount',this.value)" placeholder="Loan amount"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_rate">8.15</span>%</div></div>
+            <input type="range" id="sl_rate" min="7" max="20" step="0.05" value="8.15" oninput="syncField('rate',this.value)"/>
+            <div class="range-ends"><span>7%</span><span>20%</span></div>
+            <input type="number" id="f_rate" value="8.15" step="0.05" oninput="syncSlider('rate',this.value)" placeholder="Rate %"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Repayment Tenure (Years)</label><div class="field-val"><span id="disp_tenure">10</span> Yrs</div></div>
+            <input type="range" id="sl_tenure" min="1" max="15" step="1" value="10" oninput="syncField('tenure',this.value)"/>
+            <div class="range-ends"><span>1 Yr</span><span>15 Yrs</span></div>
+            <input type="number" id="f_tenure" value="10" data-unit="yr" oninput="syncSlider('tenure',this.value)" placeholder="Years"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Processing Fee (%)</label><div class="field-val"><span id="disp_fee">0</span>%</div></div>
+            <input type="range" id="sl_fee" min="0" max="2" step="0.1" value="0" oninput="syncField('fee',this.value)"/>
+            <div class="range-ends"><span>0%</span><span>2%</span></div>
+            <input type="number" id="f_fee" value="0" step="0.1" oninput="syncSlider('fee',this.value)" placeholder="Fee %"/>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="card result-card">
+          <div class="emi-hero"><div class="emi-label">Monthly EMI</div><div class="emi-val" id="res_emi">₹0</div></div>
+          <div class="donut-row">
+            <canvas id="donut" width="160" height="160"></canvas>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#6366f1"></span><span>Principal</span><strong id="leg_p">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f43f5e"></span><span>Interest</span><strong id="leg_i">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f59e0b"></span><span>Fee</span><strong id="leg_f">₹0</strong></div>
+            </div>
+          </div>
+          <div class="res-grid">
+            <div class="res-box"><div class="rb-label">Principal</div><div class="rb-val" id="res_p">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_int">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Processing Fee</div><div class="rb-val amber" id="res_fee">₹0</div></div>
+            <div class="res-box highlight"><div class="rb-label">Total Cost</div><div class="rb-val" id="res_total">₹0</div></div>
+          </div>
+          <div class="insight-box" id="insight"></div>
+          <div class="action-btns">
+            <button class="btn-sec" onclick="location.href='prepayment.html'">💰 Prepayment Saver</button>
+            <button class="btn-sec" onclick="location.href='bank-compare.html'">🏦 Compare Banks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="margin-top:2rem">
+      <div class="section-header">
+        <h2>Amortization Schedule</h2>
+        <div class="view-toggle">
+          <button class="vtog active" onclick="setAmortView('yr',this)">Yearly</button>
+          <button class="vtog" onclick="setAmortView('mo',this)">Monthly</button>
+        </div>
+      </div>
+      <div class="card table-card">
+        <div class="table-scroll">
+          <table><thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th><th>% Paid</th></tr></thead>
+          <tbody id="amort-body"><tr><td colspan="6" class="empty-msg">Adjust sliders to see schedule</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <h2 class="sh">Education Loan Guide</h2>
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:1rem">SBI offers the lowest education loan rates in India starting at 8.15% p.a. under the SBI Student Loan Scheme. Up to ₹7.5 lakh: no collateral needed. Above ₹7.5 lakh: collateral required. Interest during the moratorium period is typically added to the principal.</p>
+    <div class="faq">
+      <details class="faq-item"><summary>What is the moratorium period in education loans?</summary><p>Moratorium = course duration + 6 months (or 1 year after getting a job, whichever is earlier). No EMI during this period, but interest accrues and is either paid monthly or added to principal.</p></details>
+      <details class="faq-item"><summary>Is education loan interest tax deductible?</summary><p>Yes. Under Section 80E, the entire interest paid on education loans is deductible from taxable income for up to 8 consecutive years. This applies to the borrower (student or parent).</p></details>
+      <details class="faq-item"><summary>What is the maximum education loan amount in India?</summary><p>SBI and PSU banks: up to ₹7.5L without collateral, up to ₹1.5 Cr with collateral for top institutions. Private banks like HDFC Credila and Avanse offer up to ₹75L–₹1 Cr for overseas education.</p></details>
+      <details class="faq-item"><summary>Can I get an education loan without a co-applicant?</summary><p>Most banks require a parent or guardian as co-applicant. Some private lenders and NBFCs offer loans to working professionals without a co-applicant for executive education programs.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a><a href="education-loan.html">Education Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="prepayment.html">Prepayment</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+<script src="calc-core.js"></script>
+</body>
+</html>

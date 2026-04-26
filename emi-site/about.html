@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>About EasyEMI.in – Free Loan EMI Calculator India</title>
+  <meta name="description" content="About EasyEMI.in — India's most complete free loan EMI calculator. Compare all bank rates, calculate prepayment savings and check loan affordability."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html">EMI Calc</a>
+      <a href="pages/home-loan.html">Home Loan</a>
+      <a href="pages/personal-loan.html">Personal Loan</a>
+      <a href="pages/car-loan.html">Car Loan</a>
+      <a href="pages/bank-compare.html">Bank Rates</a>
+      <a href="pages/affordability.html">Affordability</a>
+      <a href="pages/prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>About EasyEMI.in</h1>
+    <p>Built for Indian borrowers who deserve clarity before signing a loan.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+
+    <div class="card" style="margin-bottom:1.25rem">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem">Why we built this</h2>
+      <p style="color:var(--text2);line-height:1.8">Most loan calculators in India show only the basic EMI. They hide what matters — the total interest you'll pay over 20 years, the processing fee, the GST on that fee, and how much you'd save by prepaying even a small amount.</p>
+      <p style="color:var(--text2);line-height:1.8;margin-top:.75rem">EasyEMI.in was built to fix that. We show you the true cost of any loan, let you compare all major banks side by side, and give you tools to save money — before you sign anything.</p>
+    </div>
+
+    <div class="card" style="margin-bottom:1.25rem">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem">What we offer</h2>
+      <div style="display:flex;flex-direction:column;gap:.75rem;margin-top:.5rem">
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <span style="font-size:1.25rem">🧮</span>
+          <div><strong>EMI Calculator</strong><br/><span style="color:var(--text2);font-size:.88rem">Sliders, quick bank rates, amortization table with year/month view.</span></div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <span style="font-size:1.25rem">🏦</span>
+          <div><strong>Bank Rate Comparison</strong><br/><span style="color:var(--text2);font-size:.88rem">Compare SBI, HDFC, ICICI, Axis, Kotak and 10+ banks side by side.</span></div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <span style="font-size:1.25rem">💰</span>
+          <div><strong>Prepayment Simulator</strong><br/><span style="color:var(--text2);font-size:.88rem">See exactly how much you save by paying ₹2,000–₹50,000 extra per month.</span></div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:flex-start">
+          <span style="font-size:1.25rem">📊</span>
+          <div><strong>Affordability Checker</strong><br/><span style="color:var(--text2);font-size:.88rem">Enter your salary → find the maximum loan you can safely take.</span></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-size:1.1rem;font-weight:700;margin-bottom:.75rem">Disclaimer</h2>
+      <p style="color:var(--text2);line-height:1.8;font-size:.9rem">EasyEMI.in is for informational purposes only. We are not affiliated with any bank, NBFC, or financial institution. Bank rates shown are representative and subject to change — always confirm directly with your bank before making a financial decision. This is not financial advice.</p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="pages/home-loan.html">Home Loan</a><a href="pages/personal-loan.html">Personal Loan</a><a href="pages/car-loan.html">Car Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="pages/bank-compare.html">Bank Rates</a><a href="pages/prepayment.html">Prepayment</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · For informational use only · Not financial advice</p></div>
+</footer>
+<script>document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav')?.classList.toggle('open'));</script>
+<script>
+function toggleTheme(){const h=document.documentElement,b=document.getElementById("themeToggle");const d=h.getAttribute("data-theme")==="dark";h.setAttribute("data-theme",d?"light":"dark");if(b)b.textContent=d?"🌙 Dark":"☀️ Light";localStorage.setItem("theme",d?"light":"dark");}
+(function(){const s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);const b=document.getElementById("themeToggle");if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";})();
+</script>
+</body>
+</html>

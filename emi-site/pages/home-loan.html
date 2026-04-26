@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Home Loan EMI Calculator India 2025 – SBI HDFC ICICI | EasyEMI.in</title>
+  <meta name="description" content="Calculate home loan EMI for SBI, HDFC, ICICI, Axis and more. See total interest, hidden fees and amortization schedule. Free, instant, 100% accurate."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/home-loan"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is the EMI for ₹30 lakh home loan?","acceptedAnswer":{"@type":"Answer","text":"At 8.5% for 20 years: ₹26,035/month. At 8.5% for 15 years: ₹29,543/month."}},{"@type":"Question","name":"Which bank has lowest home loan rate?","acceptedAnswer":{"@type":"Answer","text":"SBI and PNB offer home loans from 8.50% p.a. for salaried applicants with CIBIL 750+."}}]}</script>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>(function(){var s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);})();</script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html" class="active">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>🏠 Home Loan EMI Calculator</h1>
+    <p>Calculate your monthly EMI, compare SBI, HDFC, ICICI rates and see the true total cost of your home loan.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="calc-wrap">
+      <div class="calc-left">
+        <div class="card">
+          <div class="quick-rates" style="margin-bottom:1.5rem">
+            <div class="qr-label">Quick-fill bank rate:</div>
+            <div class="qr-chips">
+              <button class="chip" onclick="applyRate(8.50)" style="border-left:3px solid #2563eb">SBI 8.50%</button>
+              <button class="chip" onclick="applyRate(8.70)" style="border-left:3px solid #dc2626">HDFC 8.70%</button>
+              <button class="chip" onclick="applyRate(8.75)" style="border-left:3px solid #d97706">ICICI 8.75%</button>
+              <button class="chip" onclick="applyRate(8.75)" style="border-left:3px solid #7c3aed">Axis 8.75%</button>
+              <button class="chip" onclick="applyRate(8.75)" style="border-left:3px solid #059669">Kotak 8.75%</button>
+              <button class="chip" onclick="applyRate(8.50)" style="border-left:3px solid #0891b2">PNB 8.50%</button>
+              <button class="chip" onclick="applyRate(8.60)" style="border-left:3px solid #db2777">BOB 8.60%</button>
+              <button class="chip" onclick="applyRate(8.65)" style="border-left:3px solid #65a30d">Canara 8.65%</button>
+            </div>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Loan Amount</label><div class="field-val">₹<span id="disp_amount">50,00,000</span></div></div>
+            <input type="range" id="sl_amount" min="100000" max="50000000" step="100000" value="5000000" oninput="syncField('amount',this.value)"/>
+            <div class="range-ends"><span>₹1L</span><span>₹5 Cr</span></div>
+            <input type="number" id="f_amount" value="5000000" oninput="syncSlider('amount',this.value)" placeholder="Loan amount"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_rate">8.5</span>%</div></div>
+            <input type="range" id="sl_rate" min="6" max="20" step="0.05" value="8.5" oninput="syncField('rate',this.value)"/>
+            <div class="range-ends"><span>6%</span><span>20%</span></div>
+            <input type="number" id="f_rate" value="8.5" step="0.05" oninput="syncSlider('rate',this.value)" placeholder="Rate %"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Tenure (Years)</label><div class="field-val"><span id="disp_tenure">20</span> Yrs</div></div>
+            <input type="range" id="sl_tenure" min="1" max="30" step="1" value="20" oninput="syncField('tenure',this.value)"/>
+            <div class="range-ends"><span>1 Yr</span><span>30 Yrs</span></div>
+            <input type="number" id="f_tenure" value="20" data-unit="yr" oninput="syncSlider('tenure',this.value)" placeholder="Years"/>
+          </div>
+          <div class="field">
+            <div class="field-header"><label>Processing Fee (%)</label><div class="field-val"><span id="disp_fee">0.5</span>%</div></div>
+            <input type="range" id="sl_fee" min="0" max="2" step="0.05" value="0.5" oninput="syncField('fee',this.value)"/>
+            <div class="range-ends"><span>0%</span><span>2%</span></div>
+            <input type="number" id="f_fee" value="0.5" step="0.05" oninput="syncSlider('fee',this.value)" placeholder="Fee %"/>
+          </div>
+        </div>
+      </div>
+      <div class="calc-right">
+        <div class="card result-card">
+          <div class="emi-hero"><div class="emi-label">Monthly EMI</div><div class="emi-val" id="res_emi">₹0</div></div>
+          <div class="donut-row">
+            <canvas id="donut" width="160" height="160"></canvas>
+            <div class="donut-legend">
+              <div class="dl-item"><span class="dl-dot" style="background:#6366f1"></span><span>Principal</span><strong id="leg_p">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f43f5e"></span><span>Interest</span><strong id="leg_i">₹0</strong></div>
+              <div class="dl-item"><span class="dl-dot" style="background:#f59e0b"></span><span>Fee</span><strong id="leg_f">₹0</strong></div>
+            </div>
+          </div>
+          <div class="res-grid">
+            <div class="res-box"><div class="rb-label">Principal</div><div class="rb-val" id="res_p">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_int">₹0</div></div>
+            <div class="res-box"><div class="rb-label">Processing Fee</div><div class="rb-val amber" id="res_fee">₹0</div></div>
+            <div class="res-box highlight"><div class="rb-label">Total Cost</div><div class="rb-val" id="res_total">₹0</div></div>
+          </div>
+          <div class="insight-box" id="insight"></div>
+          <div class="action-btns">
+            <button class="btn-sec" onclick="location.href='prepayment.html'">💰 Prepayment Saver</button>
+            <button class="btn-sec" onclick="location.href='bank-compare.html'">🏦 Compare Banks</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- AD: Large Rectangle above Amortization (YOUR REQUEST) -->
+    <div class="ad-slot ad-rect" data-label="Ad" style="margin-top:2rem;margin-bottom:0">Advertisement · 336×280 Large Rectangle</div>
+    <div style="margin-top:1.5rem">
+      <div class="section-header">
+        <h2>Amortization Schedule</h2>
+        <div class="view-toggle">
+          <button class="vtog active" onclick="setAmortView('yr',this)">Yearly</button>
+          <button class="vtog" onclick="setAmortView('mo',this)">Monthly</button>
+        </div>
+      </div>
+      <div class="card table-card">
+        <div class="table-scroll">
+          <table><thead><tr><th>Period</th><th>EMI</th><th>Principal</th><th>Interest</th><th>Balance</th><th>% Paid</th></tr></thead>
+          <tbody id="amort-body"><tr><td colspan="6" class="empty-msg">Adjust sliders to see schedule</td></tr></tbody></table>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <h2 class="sh">Home Loan EMI Guide</h2>
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:1rem">For a ₹50 lakh home loan at 8.5% for 20 years, the monthly EMI is approximately ₹43,391. Over 20 years, your total outgo is ₹1.04 crore — you pay ₹54 lakh extra as interest. This is why choosing the right rate and tenure matters so much.</p>
+    <p style="color:var(--text2);line-height:1.8;margin-bottom:2rem">SBI and PNB currently offer the lowest home loan rates starting at 8.50% p.a. Use the quick-fill bank buttons above to instantly calculate EMI at any bank's rate. Always factor in the processing fee (0.25–1%) and GST on it.</p>
+
+    <h3 style="font-size:1.05rem;font-weight:700;margin-bottom:1rem">Common Home Loan EMI Reference</h3>
+    <div class="card table-card" style="margin-bottom:2rem">
+      <div class="table-scroll">
+        <table>
+          <thead><tr><th>Loan Amount</th><th>8.5% – 15 yrs</th><th>8.5% – 20 yrs</th><th>8.5% – 30 yrs</th></tr></thead>
+          <tbody>
+            <tr><td>₹20 Lakh</td><td>₹19,695</td><td>₹17,356</td><td>₹15,373</td></tr>
+            <tr><td>₹30 Lakh</td><td>₹29,543</td><td>₹26,035</td><td>₹23,059</td></tr>
+            <tr><td>₹50 Lakh</td><td>₹49,238</td><td>₹43,391</td><td>₹38,446</td></tr>
+            <tr><td>₹75 Lakh</td><td>₹73,857</td><td>₹65,087</td><td>₹57,669</td></tr>
+            <tr><td>₹1 Crore</td><td>₹98,476</td><td>₹86,782</td><td>₹76,891</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- AD: Banner below reference table (YOUR REQUEST) -->
+    <div class="ad-slot ad-banner" data-label="Ad" style="margin-bottom:1.5rem">Advertisement · Responsive Banner</div>
+    <div class="faq">
+      <details class="faq-item"><summary>What salary do I need for a ₹50 lakh home loan?</summary><p>Banks allow EMI up to 40–50% of take-home pay. For EMI of ₹43,391 (₹50L, 8.5%, 20 yr), you need a take-home of at least ₹87,000–₹1,08,000/month.</p></details>
+      <details class="faq-item"><summary>Can I get a home loan with CIBIL score 700?</summary><p>Most banks prefer 750+. A score of 700–749 may get approval at 0.25–0.5% higher rate. Below 700 makes approval unlikely — improve your score first.</p></details>
+      <details class="faq-item"><summary>What is the maximum home loan tenure in India?</summary><p>Most banks offer up to 30 years. SBI and HDFC go up to 30 years for salaried applicants. Tenure usually cannot extend beyond your retirement age (60–65).</p></details>
+      <details class="faq-item"><summary>Is home loan interest tax deductible in India?</summary><p>Yes. Under Section 24(b), interest up to ₹2 lakh/year is deductible for self-occupied property. Under Section 80C, principal repayment up to ₹1.5 lakh is deductible.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a><a href="education-loan.html">Education Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="prepayment.html">Prepayment</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+<script src="calc-core.js"></script>
+</body>
+</html>

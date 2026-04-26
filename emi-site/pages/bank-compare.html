@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bank Loan Rate Comparison India 2025 – SBI vs HDFC vs ICICI | EasyEMI.in</title>
+  <meta name="description" content="Compare home loan, personal loan and car loan rates across SBI, HDFC, ICICI, Axis, Kotak and 10+ banks. See exact EMI and total cost for each bank side by side."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/bank-compare.html"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>
+    (function(){
+      var s=localStorage.getItem("theme")||"dark";
+      document.documentElement.setAttribute("data-theme",s);
+    })();
+  </script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html" class="active">Bank Rates</a>
+      <a href="affordability.html">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>🏦 Bank Rate Comparison</h1>
+    <p>Compare EMI and total cost across all major Indian banks — enter your loan and see who offers the best deal.</p>
+  </div>
+</div>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<!-- AD: Half Page above FAQs (YOUR REQUEST) -->
+<div class="container"><div class="ad-slot ad-half" data-label="Ad">Advertisement · 300×600 Half Page</div></div>
+
+<section class="section">
+  <div class="container">
+    <!-- INPUTS -->
+    <div class="card" style="margin-bottom:1.5rem">
+      <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem;align-items:end">
+        <div class="field">
+          <div class="field-header"><label>Loan Amount</label></div>
+          <input type="number" id="bc_amount" value="2000000" oninput="bcCalc()"/>
+        </div>
+        <div class="field">
+          <div class="field-header"><label>Tenure (Years)</label></div>
+          <input type="number" id="bc_tenure" value="20" oninput="bcCalc()"/>
+        </div>
+        <div>
+          <div class="qr-label" style="margin-bottom:.5rem">Loan Type</div>
+          <div style="display:flex;gap:.5rem;flex-wrap:wrap">
+            <button class="tab active" id="bct_home" onclick="setBCType('home',this)">🏠 Home</button>
+            <button class="tab" id="bct_personal" onclick="setBCType('personal',this)">👤 Personal</button>
+            <button class="tab" id="bct_car" onclick="setBCType('car',this)">🚗 Car</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANK CARDS GRID -->
+    <h2 class="sh">Current Rates by Bank</h2>
+    <div class="bank-grid" id="bank-grid"></div>
+
+    <div class="container" style="padding:0;margin:1.5rem 0"><div class="ad-slot">Advertisement</div></div>
+
+    <!-- COMPARISON TABLE -->
+    <h2 class="sh" style="margin-top:2rem">Side-by-Side EMI Comparison</h2>
+    <div class="card table-card">
+      <div class="cmp-table-wrap">
+        <table class="cmp-table" id="cmp-table">
+          <thead>
+            <tr>
+              <th>Bank</th>
+              <th>Rate (p.a.)</th>
+              <th>Monthly EMI</th>
+              <th>Total Interest</th>
+              <th>Total Cost</th>
+              <th>vs Cheapest</th>
+            </tr>
+          </thead>
+          <tbody id="cmp-body"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- WINNER CARD -->
+    <div id="winner-card" style="margin-top:1.5rem;display:none" class="card">
+      <div style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap">
+        <div style="font-size:2rem">🏆</div>
+        <div>
+          <div style="font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px">Best Deal for Your Loan</div>
+          <div id="winner-name" style="font-size:1.4rem;font-weight:800;color:var(--green)"></div>
+          <div id="winner-detail" style="color:var(--text2);font-size:.88rem;margin-top:.25rem"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<!-- AD: Half Page above FAQs (YOUR REQUEST) -->
+<div class="container"><div class="ad-slot ad-half" data-label="Ad">Advertisement · 300×600 Half Page</div></div>
+
+<section class="section">
+  <div class="container">
+    <h2 class="sh">Bank Rate FAQs</h2>
+    <div class="faq">
+      <details class="faq-item"><summary>Which bank has the lowest home loan rate in India?</summary><p>SBI and PNB typically offer the lowest home loan rates starting at 8.50% p.a. for salaried applicants with CIBIL score above 750. Rates change periodically based on RBI repo rate.</p></details>
+      <details class="faq-item"><summary>Do all banks use the same EMI formula?</summary><p>Yes. All Indian banks use the reducing balance method: EMI = [P×R×(1+R)^N]/[(1+R)^N–1]. The only difference is the interest rate each bank charges.</p></details>
+      <details class="faq-item"><summary>Can I negotiate the interest rate with a bank?</summary><p>Yes — especially if you have a CIBIL score above 750, a long relationship with the bank, or a high salary. It's always worth asking for a 0.25–0.5% reduction.</p></details>
+      <details class="faq-item"><summary>Are the rates shown here live/real-time?</summary><p>These are representative rates as of 2025 for salaried applicants with good credit scores. Actual rates may vary based on your profile, loan amount, and the bank's current offers. Always confirm with the bank before deciding.</p></details>
+    </div>
+  </div>
+</section>
+
+<div class="container"><div class="ad-slot">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <div class="logo">💰 EasyEMI<span>.in</span></div>
+      <p>Free loan calculator for all Indian banks.</p>
+    </div>
+    <div class="footer-links">
+      <div class="fl-col">
+        <div class="fl-title">Calculators</div>
+        <a href="home-loan.html">Home Loan EMI</a>
+        <a href="personal-loan.html">Personal Loan EMI</a>
+        <a href="car-loan.html">Car Loan EMI</a>
+      </div>
+      <div class="fl-col">
+        <div class="fl-title">Tools</div>
+        <a href="prepayment.html">Prepayment Saver</a>
+        <a href="affordability.html">Affordability Check</a>
+      </div>
+      <div class="fl-col">
+        <div class="fl-title">Info</div>
+        <a href="../privacy.html">Privacy Policy</a>
+        <a href="../about.html">About</a>
+        <a href="../contact.html">Contact</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · For informational use only · Not financial advice</p></div>
+</footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById("themeToggle");
+  const d=h.getAttribute("data-theme")==="dark";
+  h.setAttribute("data-theme",d?"light":"dark");
+  if(b)b.textContent=d?"🌙 Dark":"☀️ Light";
+  localStorage.setItem("theme",d?"light":"dark");
+}
+(function(){
+  const s=localStorage.getItem("theme")||"dark";
+  document.documentElement.setAttribute("data-theme",s);
+  const b=document.getElementById("themeToggle");
+  if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";
+})();
+
+const BANKS = {
+  home: [
+    {name:'SBI',rate:8.50,color:'#2563eb',fee:0.35},{name:'HDFC',rate:8.70,color:'#dc2626',fee:0.50},
+    {name:'ICICI',rate:8.75,color:'#d97706',fee:0.50},{name:'Axis',rate:8.75,color:'#7c3aed',fee:1.00},
+    {name:'Kotak',rate:8.75,color:'#059669',fee:0.50},{name:'PNB',rate:8.50,color:'#0891b2',fee:0.35},
+    {name:'BOB',rate:8.60,color:'#db2777',fee:0.25},{name:'Canara',rate:8.65,color:'#65a30d',fee:0.50},
+    {name:'Union',rate:8.60,color:'#9333ea',fee:0.50},{name:'IDBI',rate:8.55,color:'#0d9488',fee:0.50}
+  ],
+  personal: [
+    {name:'SBI',rate:11.00,color:'#2563eb',fee:1.50},{name:'HDFC',rate:10.50,color:'#dc2626',fee:2.50},
+    {name:'ICICI',rate:10.75,color:'#d97706',fee:2.00},{name:'Axis',rate:10.49,color:'#7c3aed',fee:1.50},
+    {name:'Kotak',rate:10.99,color:'#059669',fee:1.50},{name:'Bajaj',rate:13.00,color:'#0891b2',fee:2.00},
+    {name:'IndusInd',rate:10.49,color:'#db2777',fee:2.50},{name:'Yes Bank',rate:10.99,color:'#65a30d',fee:1.00}
+  ],
+  car: [
+    {name:'SBI',rate:9.15,color:'#2563eb',fee:0.00},{name:'HDFC',rate:9.00,color:'#dc2626',fee:1.00},
+    {name:'ICICI',rate:9.10,color:'#d97706',fee:1.00},{name:'Axis',rate:9.20,color:'#7c3aed',fee:1.00},
+    {name:'Kotak',rate:8.99,color:'#059669',fee:0.50},{name:'BOB',rate:9.15,color:'#db2777',fee:0.00},
+    {name:'Canara',rate:9.30,color:'#65a30d',fee:0.50},{name:'Union',rate:9.25,color:'#9333ea',fee:0.25}
+  ]
+};
+let bcType = 'home';
+const fmt = n => '₹'+Math.round(n).toLocaleString('en-IN');
+function calcEMI(P,r,N){if(!r)return P/N;const mr=r/12/100;return(P*mr*Math.pow(1+mr,N))/(Math.pow(1+mr,N)-1);}
+
+function setBCType(type, btn){
+  bcType = type;
+  document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+  btn.classList.add('active');
+  bcCalc();
+}
+
+function bcCalc(){
+  const P = parseFloat(document.getElementById('bc_amount').value)||0;
+  const yrs = parseFloat(document.getElementById('bc_tenure').value)||0;
+  const N = yrs*12;
+  const banks = BANKS[bcType];
+  if(!P||!N) return;
+
+  const results = banks.map(b=>{
+    const emi = calcEMI(P,b.rate,N);
+    const totalInt = emi*N - P;
+    const fee = (b.fee/100)*P;
+    const totalCost = emi*N + fee;
+    return {...b, emi, totalInt, fee, totalCost};
+  }).sort((a,b)=>a.totalCost-b.totalCost);
+
+  const minCost = results[0].totalCost;
+
+  // Bank grid
+  document.getElementById('bank-grid').innerHTML = banks.map(b=>{
+    const res = results.find(r=>r.name===b.name);
+    return `<div class="bank-card">
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem">
+        <span class="bank-dot" style="background:${b.color}"></span>
+        <span class="bank-name">${b.name}</span>
+      </div>
+      <div class="bank-rate">${b.rate}% p.a.</div>
+      <div class="bank-type">EMI: ${fmt(res.emi)}/mo</div>
+      <div style="font-size:.75rem;color:var(--text2);margin-top:.25rem">Fee: ${b.fee}%</div>
+    </div>`;
+  }).join('');
+
+  // Comparison table
+  document.getElementById('cmp-body').innerHTML = results.map((b,i)=>{
+    const diff = b.totalCost - minCost;
+    const diffStr = i===0 ? '<span style="color:var(--green);font-weight:700">✅ Best</span>' :
+      `<span style="color:var(--red)">+${fmt(diff)}</span>`;
+    return `<tr class="${i===0?'winner-row':''}">
+      <td><span class="bank-badge"><span class="bank-dot" style="background:${b.color}"></span>${b.name}</span></td>
+      <td class="${i===0?'best':''}">${b.rate}%</td>
+      <td class="${i===0?'best':''}">${fmt(b.emi)}</td>
+      <td>${fmt(b.totalInt)}</td>
+      <td class="${i===results.length-1?'worst':''}">${fmt(b.totalCost)}</td>
+      <td>${diffStr}</td>
+    </tr>`;
+  }).join('');
+
+  // Winner
+  const w = results[0];
+  const worst = results[results.length-1];
+  document.getElementById('winner-card').style.display='block';
+  document.getElementById('winner-name').textContent = `${w.name} — ${w.rate}% p.a.`;
+  document.getElementById('winner-detail').textContent = `Monthly EMI: ${fmt(w.emi)} · You save ${fmt(worst.totalCost-w.totalCost)} vs ${worst.name} over ${yrs} years`;
+}
+
+document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav')?.classList.toggle('open'));
+document.addEventListener('DOMContentLoaded', bcCalc);
+</script>
+</body>
+</html>

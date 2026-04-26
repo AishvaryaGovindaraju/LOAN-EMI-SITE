@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Loan Affordability Calculator India – How Much Loan Can I Get? | EasyEMI.in</title>
+  <meta name="description" content="Find out the maximum home loan or personal loan you can get based on your salary. Uses the 40-50% EMI-to-income rule used by all Indian banks."/>
+  <link rel="canonical" href="https://YOUR-DOMAIN.vercel.app/pages/affordability"/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="../style.css"/>
+  <!-- THEME: runs before render to prevent flash -->
+  <script>
+    (function(){
+      var s=localStorage.getItem("theme")||"dark";
+      document.documentElement.setAttribute("data-theme",s);
+    })();
+  </script>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="../index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="../index.html">EMI Calc</a>
+      <a href="home-loan.html">Home Loan</a>
+      <a href="personal-loan.html">Personal Loan</a>
+      <a href="car-loan.html">Car Loan</a>
+      <a href="bank-compare.html">Bank Rates</a>
+      <a href="affordability.html" class="active">Affordability</a>
+      <a href="prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>📊 Loan Affordability Calculator</h1>
+    <p>Enter your salary → find the maximum loan you qualify for at any bank, based on the 40–50% EMI rule.</p>
+  </div>
+</div>
+
+<!-- AD SLOT 1: Below hero -->
+<div class="container"><div class="ad-slot" id="ad-top">Advertisement</div></div>
+
+<section class="section">
+  <div class="container">
+    <div class="afford-grid">
+
+      <!-- INPUTS -->
+      <div class="card">
+        <h3 style="font-size:1rem;font-weight:700;margin-bottom:1.25rem">Your Profile</h3>
+
+        <div class="field">
+          <div class="field-header"><label>Monthly Take-Home Salary</label><div class="field-val">₹<span id="disp_salary">50,000</span></div></div>
+          <input type="range" id="sl_salary" min="10000" max="500000" step="5000" value="50000" oninput="syncAff('salary',this.value)"/>
+          <div class="range-ends"><span>₹10K</span><span>₹5L</span></div>
+          <input type="number" id="f_salary" value="50000" oninput="syncAffInp('salary',this.value)" placeholder="Take-home salary"/>
+        </div>
+
+        <div class="field">
+          <div class="field-header"><label>Existing EMIs per Month</label><div class="field-val">₹<span id="disp_existing">0</span></div></div>
+          <input type="range" id="sl_existing" min="0" max="100000" step="1000" value="0" oninput="syncAff('existing',this.value)"/>
+          <div class="range-ends"><span>₹0</span><span>₹1L</span></div>
+          <input type="number" id="f_existing" value="0" oninput="syncAffInp('existing',this.value)" placeholder="Existing EMIs"/>
+        </div>
+
+        <div class="field">
+          <div class="field-header"><label>Interest Rate (p.a.)</label><div class="field-val"><span id="disp_aff_rate">8.5</span>%</div></div>
+          <input type="range" id="sl_aff_rate" min="6" max="24" step="0.1" value="8.5" oninput="syncAff('aff_rate',this.value)"/>
+          <div class="range-ends"><span>6%</span><span>24%</span></div>
+          <input type="number" id="f_aff_rate" value="8.5" step="0.1" oninput="syncAffInp('aff_rate',this.value)" placeholder="Rate %"/>
+        </div>
+
+        <div class="field">
+          <div class="field-header"><label>Loan Tenure (Years)</label><div class="field-val"><span id="disp_aff_tenure">20</span> Yrs</div></div>
+          <input type="range" id="sl_aff_tenure" min="1" max="30" step="1" value="20" oninput="syncAff('aff_tenure',this.value)"/>
+          <div class="range-ends"><span>1 Yr</span><span>30 Yrs</span></div>
+          <input type="number" id="f_aff_tenure" value="20" oninput="syncAffInp('aff_tenure',this.value)" placeholder="Years"/>
+        </div>
+
+        <!-- EMI ratio toggle -->
+        <div class="field">
+          <label style="font-size:.8rem;font-weight:600;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;display:block;margin-bottom:.5rem">EMI-to-Income Ratio</label>
+          <div style="display:flex;gap:.5rem">
+            <button class="ttog" id="r30" onclick="setRatio(30)">30%</button>
+            <button class="ttog active" id="r40" onclick="setRatio(40)">40% <span style="font-size:.7rem">(standard)</span></button>
+            <button class="ttog" id="r50" onclick="setRatio(50)">50% <span style="font-size:.7rem">(max)</span></button>
+          </div>
+        </div>
+
+        <!-- Quick bank rates -->
+        <div class="quick-rates" style="margin-top:.75rem">
+          <div class="qr-label">Quick-fill rate:</div>
+          <div class="qr-chips">
+            <button class="chip" onclick="setAffRate(8.50)" style="border-left:3px solid #2563eb">SBI 8.5%</button>
+            <button class="chip" onclick="setAffRate(8.70)" style="border-left:3px solid #dc2626">HDFC 8.7%</button>
+            <button class="chip" onclick="setAffRate(10.50)" style="border-left:3px solid #dc2626">HDFC PL 10.5%</button>
+            <button class="chip" onclick="setAffRate(11.00)" style="border-left:3px solid #2563eb">SBI PL 11%</button>
+            <button class="chip" onclick="setAffRate(9.15)" style="border-left:3px solid #2563eb">SBI Car 9.15%</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- RESULTS -->
+      <div style="display:flex;flex-direction:column;gap:1rem">
+
+        <!-- Max loan card -->
+        <div class="card" style="text-align:center">
+          <div style="font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.5px;margin-bottom:.4rem">Maximum Loan You Can Get</div>
+          <div class="emi-val" id="res_maxloan">₹0</div>
+          <div style="font-size:.82rem;color:var(--text2);margin-top:.5rem" id="res_maxemi_label">Max eligible EMI: ₹0/month</div>
+        </div>
+
+        <!-- Meter -->
+        <div class="card">
+          <div style="font-size:.82rem;font-weight:600;margin-bottom:.75rem">EMI Burden Meter</div>
+          <div class="meter-bar"><div class="meter-fill" id="meter-fill" style="width:0%"></div></div>
+          <div style="display:flex;justify-content:space-between;font-size:.75rem;color:var(--text2);margin-top:.3rem">
+            <span>0%</span><span id="meter-pct">0% of income</span><span>100%</span>
+          </div>
+          <div id="meter-verdict" style="margin-top:.75rem;font-size:.85rem;padding:.6rem .85rem;border-radius:8px"></div>
+        </div>
+
+        <!-- Breakdown grid -->
+        <div class="res-grid">
+          <div class="res-box"><div class="rb-label">Max Eligible EMI</div><div class="rb-val" id="res_eligemi">₹0</div></div>
+          <div class="res-box"><div class="rb-label">Remaining after EMI</div><div class="rb-val" id="res_remaining">₹0</div></div>
+          <div class="res-box"><div class="rb-label">Total Interest</div><div class="rb-val red" id="res_affint">₹0</div></div>
+          <div class="res-box highlight"><div class="rb-label">Total Repayment</div><div class="rb-val" id="res_afftotal">₹0</div></div>
+        </div>
+
+        <div class="action-btns">
+          <button class="btn-sec" onclick="location.href='../index.html'">🧮 Full EMI Calc</button>
+          <button class="btn-sec" onclick="location.href='bank-compare.html'">🏦 Compare Banks</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT 2: Mid page -->
+<div class="container"><div class="ad-slot" id="ad-mid">Advertisement</div></div>
+
+<!-- SALARY vs LOAN TABLE -->
+<section class="section">
+  <div class="container">
+    <h2 class="sh">Salary → Max Loan Reference Table</h2>
+    <p style="color:var(--text2);margin-bottom:1.25rem;font-size:.9rem">At 40% EMI rule, 8.5% rate, 20-year tenure</p>
+    <div class="card table-card">
+      <div class="table-scroll">
+        <table id="ref-table">
+          <thead><tr><th>Monthly Salary</th><th>Max EMI (40%)</th><th>Max Home Loan</th><th>Max Car Loan (5yr)</th><th>Max Personal (3yr)</th></tr></thead>
+          <tbody id="ref-body"></tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT 3: Before FAQ -->
+<div class="container"><div class="ad-slot" id="ad-prefaq">Advertisement</div></div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <div class="faq">
+      <details class="faq-item"><summary>What EMI-to-income ratio do banks use?</summary><p>Most Indian banks use 40–50% of monthly take-home (net) salary. If your total existing EMIs + new EMI exceed this, the loan gets rejected. 40% is the safe zone; 50% is the absolute maximum most lenders allow.</p></details>
+      <details class="faq-item"><summary>Does salary mean gross or take-home?</summary><p>Banks assess take-home (net) salary — after PF, tax, and other deductions. Use your in-hand salary, not CTC.</p></details>
+      <details class="faq-item"><summary>Can I increase my loan eligibility?</summary><p>Yes: (1) Add a co-applicant with income, (2) Close existing loans before applying, (3) Increase tenure — longer tenure = lower EMI = higher eligibility, (4) Improve CIBIL score to get a lower rate.</p></details>
+      <details class="faq-item"><summary>Why is my actual loan offer lower than this calculator shows?</summary><p>Banks also factor in CIBIL score, employment type, company profile, age, and credit history. This calculator uses only the income-based formula. Treat it as the upper ceiling.</p></details>
+    </div>
+  </div>
+</section>
+
+<!-- AD SLOT 4: Footer -->
+<div class="container"><div class="ad-slot" id="ad-bottom">Advertisement</div></div>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan tools for India.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="home-loan.html">Home Loan</a><a href="personal-loan.html">Personal Loan</a><a href="car-loan.html">Car Loan</a><a href="education-loan.html">Education Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="bank-compare.html">Bank Rates</a><a href="prepayment.html">Prepayment</a><a href="affordability.html">Affordability</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="../privacy.html">Privacy</a><a href="../about.html">About</a><a href="../contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · Not financial advice</p></div>
+</footer>
+
+<script>
+function toggleTheme(){
+  const h=document.documentElement,b=document.getElementById("themeToggle");
+  const d=h.getAttribute("data-theme")==="dark";
+  h.setAttribute("data-theme",d?"light":"dark");
+  if(b)b.textContent=d?"🌙 Dark":"☀️ Light";
+  localStorage.setItem("theme",d?"light":"dark");
+}
+(function(){
+  const s=localStorage.getItem("theme")||"dark";
+  document.documentElement.setAttribute("data-theme",s);
+  const b=document.getElementById("themeToggle");
+  if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";
+})();
+
+const fmt = n => '₹' + Math.round(n).toLocaleString('en-IN');
+let ratio = 40;
+
+function calcEMI(P, rate, N) {
+  if (!rate) return P / N;
+  const r = rate / 12 / 100;
+  return (P * r * Math.pow(1+r,N)) / (Math.pow(1+r,N)-1);
+}
+// reverse EMI → max principal
+function maxLoan(emi, rate, N) {
+  if (!rate) return emi * N;
+  const r = rate / 12 / 100;
+  return emi * (Math.pow(1+r,N)-1) / (r * Math.pow(1+r,N));
+}
+
+function syncAff(field, val) {
+  const v = parseFloat(val);
+  document.getElementById('f_' + field).value = v;
+  const fmt2 = f => f === 'salary' || f === 'existing' ? Math.round(v).toLocaleString('en-IN') : v;
+  document.getElementById('disp_' + field).textContent = fmt2(field);
+  affCalc();
+}
+function syncAffInp(field, val) {
+  const v = parseFloat(val);
+  document.getElementById('sl_' + field).value = v;
+  document.getElementById('disp_' + field).textContent = (field==='salary'||field==='existing') ? Math.round(v).toLocaleString('en-IN') : v;
+  affCalc();
+}
+function setRatio(r) {
+  ratio = r;
+  [30,40,50].forEach(x => document.getElementById('r'+x)?.classList.toggle('active', x===r));
+  affCalc();
+}
+function setAffRate(r) {
+  ['f_aff_rate','sl_aff_rate'].forEach(id => { const el=document.getElementById(id); if(el) el.value=r; });
+  document.getElementById('disp_aff_rate').textContent = r;
+  affCalc();
+}
+
+function affCalc() {
+  const salary   = parseFloat(document.getElementById('f_salary').value) || 0;
+  const existing = parseFloat(document.getElementById('f_existing').value) || 0;
+  const rate     = parseFloat(document.getElementById('f_aff_rate').value) || 0;
+  const yrs      = parseFloat(document.getElementById('f_aff_tenure').value) || 0;
+  const N        = yrs * 12;
+
+  const maxEMI   = salary * (ratio / 100) - existing;
+  const maxL     = maxEMI > 0 ? maxLoan(maxEMI, rate, N) : 0;
+  const totalPay = maxEMI * N;
+  const totalInt = totalPay - maxL;
+  const usedPct  = Math.min(((existing) / (salary * (ratio/100))) * 100, 100);
+
+  const set = (id,v) => { const el=document.getElementById(id); if(el) el.textContent=v; };
+  set('res_maxloan', fmt(Math.max(0,maxL)));
+  set('res_maxemi_label', `Max eligible EMI: ${fmt(Math.max(0,maxEMI))}/month`);
+  set('res_eligemi', fmt(Math.max(0,maxEMI)));
+  set('res_remaining', fmt(Math.max(0, salary - Math.max(0,maxEMI) - existing)));
+  set('res_affint', fmt(Math.max(0,totalInt)));
+  set('res_afftotal', fmt(Math.max(0,totalPay)));
+
+  // meter
+  const fill = document.getElementById('meter-fill');
+  const pct  = Math.min((existing / salary) * 100, 100);
+  if (fill) {
+    fill.style.width = pct + '%';
+    fill.className = 'meter-fill ' + (pct < 30 ? 'meter-safe' : pct < 45 ? 'meter-warn' : 'meter-danger');
+  }
+  set('meter-pct', pct.toFixed(0) + '% of income used by existing EMIs');
+
+  const verdict = document.getElementById('meter-verdict');
+  if (verdict) {
+    if (maxEMI <= 0) {
+      verdict.style.background = 'rgba(244,63,94,.1)'; verdict.style.color = '#f43f5e';
+      verdict.textContent = '❌ Existing EMIs exceed the ' + ratio + '% limit. Close some loans first.';
+    } else if (pct < 20) {
+      verdict.style.background = 'rgba(16,185,129,.08)'; verdict.style.color = '#10b981';
+      verdict.textContent = '✅ Healthy debt load. You have strong loan eligibility.';
+    } else if (pct < 35) {
+      verdict.style.background = 'rgba(245,158,11,.08)'; verdict.style.color = '#f59e0b';
+      verdict.textContent = '⚠️ Moderate debt load. You can get a loan but headroom is limited.';
+    } else {
+      verdict.style.background = 'rgba(244,63,94,.08)'; verdict.style.color = '#f43f5e';
+      verdict.textContent = '🔴 High debt load. Banks may offer lower amount or reject the application.';
+    }
+  }
+}
+
+// Reference table
+function buildRefTable() {
+  const salaries = [25000,35000,50000,75000,100000,150000,200000,300000,500000];
+  const rows = salaries.map(s => {
+    const maxE = s * 0.4;
+    const hl = maxLoan(maxE, 8.5, 240);
+    const cl = maxLoan(maxE, 9.15, 60);
+    const pl = maxLoan(maxE, 11, 36);
+    return `<tr>
+      <td><strong>${fmt(s)}</strong></td>
+      <td>${fmt(maxE)}</td>
+      <td style="color:#6366f1">${fmt(hl)}</td>
+      <td>${fmt(cl)}</td>
+      <td style="color:#f43f5e">${fmt(pl)}</td>
+    </tr>`;
+  });
+  document.getElementById('ref-body').innerHTML = rows.join('');
+}
+
+document.getElementById('hamburger')?.addEventListener('click', () => document.getElementById('nav')?.classList.toggle('open'));
+document.addEventListener('DOMContentLoaded', () => { affCalc(); buildRefTable(); });
+</script>
+</body>
+</html>

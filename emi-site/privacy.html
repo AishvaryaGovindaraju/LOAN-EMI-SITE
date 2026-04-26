@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Privacy Policy – EasyEMI.in</title>
+  <meta name="description" content="Privacy policy for EasyEMI.in — free EMI calculator for India."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html">EMI Calc</a>
+      <a href="pages/home-loan.html">Home Loan</a>
+      <a href="pages/personal-loan.html">Personal Loan</a>
+      <a href="pages/car-loan.html">Car Loan</a>
+      <a href="pages/bank-compare.html">Bank Rates</a>
+      <a href="pages/affordability.html">Affordability</a>
+      <a href="pages/prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>Privacy Policy</h1>
+    <p>Last updated: January 2025</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:720px">
+    <div class="card" style="display:flex;flex-direction:column;gap:1.75rem">
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">1. Information We Collect</h2>
+        <p style="color:var(--text2);line-height:1.8">This website does not collect any personally identifiable information. All EMI calculations happen entirely in your browser. We do not store, transmit, or log any loan amounts, interest rates, or personal financial data you enter.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">2. Google AdSense & Cookies</h2>
+        <p style="color:var(--text2);line-height:1.8">We use Google AdSense to display advertisements. Google may use cookies and web beacons to serve ads based on your prior visits to this and other websites. Google's use of advertising cookies enables it and its partners to serve ads based on your visit to our site and/or other sites on the Internet.</p>
+        <p style="color:var(--text2);line-height:1.8;margin-top:.75rem">You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" target="_blank" rel="noopener">Google Ads Settings</a>. You can also opt out via <a href="http://www.aboutads.info/choices/" target="_blank" rel="noopener">aboutads.info</a>.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">3. Google Analytics</h2>
+        <p style="color:var(--text2);line-height:1.8">We may use Google Analytics to understand how visitors use our site. This service collects anonymized data such as pages visited, time on site, and device type. No personally identifiable information is collected. You can opt out using the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank" rel="noopener">Google Analytics Opt-out Browser Add-on</a>.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">4. Third-Party Links</h2>
+        <p style="color:var(--text2);line-height:1.8">Our website may contain links to external websites. We are not responsible for the privacy practices or content of those sites. We encourage you to review the privacy policy of any site you visit.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">5. Children's Privacy</h2>
+        <p style="color:var(--text2);line-height:1.8">This website is not directed at children under the age of 13. We do not knowingly collect any information from children.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">6. Changes to This Policy</h2>
+        <p style="color:var(--text2);line-height:1.8">We may update this privacy policy from time to time. Changes will be posted on this page with an updated date. Continued use of the site after changes constitutes acceptance of the updated policy.</p>
+      </div>
+
+      <div>
+        <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:.6rem">7. Contact Us</h2>
+        <p style="color:var(--text2);line-height:1.8">For any privacy-related questions, please contact us via the <a href="contact.html">Contact page</a>.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="pages/home-loan.html">Home Loan</a><a href="pages/personal-loan.html">Personal Loan</a><a href="pages/car-loan.html">Car Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="pages/bank-compare.html">Bank Rates</a><a href="pages/prepayment.html">Prepayment</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · For informational use only · Not financial advice</p></div>
+</footer>
+<script>document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav')?.classList.toggle('open'));</script>
+<script>
+function toggleTheme(){const h=document.documentElement,b=document.getElementById("themeToggle");const d=h.getAttribute("data-theme")==="dark";h.setAttribute("data-theme",d?"light":"dark");if(b)b.textContent=d?"🌙 Dark":"☀️ Light";localStorage.setItem("theme",d?"light":"dark");}
+(function(){const s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);const b=document.getElementById("themeToggle");if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";})();
+</script>
+</body>
+</html>

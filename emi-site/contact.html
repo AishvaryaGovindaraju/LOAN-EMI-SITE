@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact – EasyEMI.in</title>
+  <meta name="description" content="Contact EasyEMI.in for feedback, queries or issues with our free loan EMI calculator."/>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+<header class="header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">💰 EasyEMI<span>.in</span></a>
+    <nav class="nav" id="nav">
+      <a href="index.html">EMI Calc</a>
+      <a href="pages/home-loan.html">Home Loan</a>
+      <a href="pages/personal-loan.html">Personal Loan</a>
+      <a href="pages/car-loan.html">Car Loan</a>
+      <a href="pages/bank-compare.html">Bank Rates</a>
+      <a href="pages/affordability.html">Affordability</a>
+      <a href="pages/prepayment.html">Prepayment</a>
+    </nav>
+    <div class="header-right"><button class="theme-toggle" id="themeToggle" onclick="toggleTheme()">🌙 Dark</button><button class="hamburger" id="hamburger">☰</button></div>
+  </div>
+</header>
+
+<div class="page-hero">
+  <div class="container">
+    <h1>Contact Us</h1>
+    <p>Questions, feedback, or found a bug? We'd love to hear from you.</p>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container" style="max-width:600px">
+    <div class="card" style="margin-bottom:1.25rem">
+      <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:1rem">Get in Touch</h2>
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <div style="display:flex;gap:.75rem;align-items:center">
+          <span style="font-size:1.25rem">📧</span>
+          <div>
+            <div style="font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:.2rem">Email</div>
+            <!-- REPLACE with your actual email -->
+            <a href="mailto:hello@easyemi.in" style="font-weight:600">hello@easyemi.in</a>
+          </div>
+        </div>
+        <div style="display:flex;gap:.75rem;align-items:center">
+          <span style="font-size:1.25rem">⏱️</span>
+          <div>
+            <div style="font-size:.78rem;color:var(--text2);text-transform:uppercase;letter-spacing:.4px;margin-bottom:.2rem">Response Time</div>
+            <span style="font-weight:600">Within 2–3 business days</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2 style="font-size:1.05rem;font-weight:700;margin-bottom:1rem">Common Queries</h2>
+      <div style="display:flex;flex-direction:column;gap:.85rem">
+        <div style="padding:.85rem;background:var(--bg2);border-radius:var(--r2);border:1px solid var(--border)">
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:.3rem">Are the bank rates accurate?</div>
+          <div style="color:var(--text2);font-size:.85rem">Rates shown are representative as of 2025. They update based on RBI policy. Always confirm with your bank before deciding.</div>
+        </div>
+        <div style="padding:.85rem;background:var(--bg2);border-radius:var(--r2);border:1px solid var(--border)">
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:.3rem">Is this calculator 100% accurate?</div>
+          <div style="color:var(--text2);font-size:.85rem">Yes. We use the standard reducing balance EMI formula used by all RBI-regulated banks in India.</div>
+        </div>
+        <div style="padding:.85rem;background:var(--bg2);border-radius:var(--r2);border:1px solid var(--border)">
+          <div style="font-weight:600;font-size:.9rem;margin-bottom:.3rem">Want to report a bug or suggest a feature?</div>
+          <div style="color:var(--text2);font-size:.85rem">Email us with details. We read every message and ship fixes fast.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand"><div class="logo">💰 EasyEMI<span>.in</span></div><p>Free loan calculator for all Indian banks.</p></div>
+    <div class="footer-links">
+      <div class="fl-col"><div class="fl-title">Calculators</div><a href="pages/home-loan.html">Home Loan</a><a href="pages/personal-loan.html">Personal Loan</a><a href="pages/car-loan.html">Car Loan</a></div>
+      <div class="fl-col"><div class="fl-title">Tools</div><a href="pages/bank-compare.html">Bank Rates</a><a href="pages/prepayment.html">Prepayment</a></div>
+      <div class="fl-col"><div class="fl-title">Info</div><a href="privacy.html">Privacy Policy</a><a href="about.html">About</a><a href="contact.html">Contact</a></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><p>© 2025 EasyEMI.in · For informational use only · Not financial advice</p></div>
+</footer>
+<script>document.getElementById('hamburger')?.addEventListener('click',()=>document.getElementById('nav')?.classList.toggle('open'));</script>
+<script>
+function toggleTheme(){const h=document.documentElement,b=document.getElementById("themeToggle");const d=h.getAttribute("data-theme")==="dark";h.setAttribute("data-theme",d?"light":"dark");if(b)b.textContent=d?"🌙 Dark":"☀️ Light";localStorage.setItem("theme",d?"light":"dark");}
+(function(){const s=localStorage.getItem("theme")||"dark";document.documentElement.setAttribute("data-theme",s);const b=document.getElementById("themeToggle");if(b)b.textContent=s==="dark"?"🌙 Dark":"☀️ Light";})();
+</script>
+</body>
+</html>
